@@ -5,25 +5,25 @@ type props = {
   categories: ICategory[];
   setSlugSelected: Dispatch<SetStateAction<string>>;
   slugSelected: string;
+  blockClass: string;
 }
 
-const DepartmentGroupSearchBar = ({ categories, setSlugSelected }: props) => {
+const DepartmentGroupSearchBar = ({ categories, setSlugSelected, slugSelected, blockClass }: props) => {
 
   const handleSelectedSlug = (e: any) => {
     setSlugSelected(e.target.value);
   }
 
   return (
-    <div>
-
-      <select name="" id=""
+    <div className={blockClass}>
+      <select
         onChange={handleSelectedSlug}
-        defaultValue='0'
+        defaultValue={slugSelected}
       >
         <option value='0'>Seleccione una opcion</option>
         {
           categories.map(e => (
-            <option value={e.slug} key={getID(3)}>{e.slug}</option>
+            <option value={e.slug} key={getID(3)} selected={slugSelected === e.slug}>{e.slug}</option>
           ))
         }
       </select>
